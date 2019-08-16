@@ -19,7 +19,7 @@ const Tetris = () => {
   // console.log("******************************");
   const [dropTime, setDropTime] = useState(null);
   const [isGameOver, setIsGameOver] = useState(false);
-  const [player, updatePlayerPosition, resetPlayer] = usePlayer();
+  const [player, updatePlayerPosition, resetPlayer, rotatePlayer] = usePlayer();
   const [stage, setStage] = useStage(player, resetPlayer);
 
   const movePlayer = direction => {
@@ -83,6 +83,9 @@ const Tetris = () => {
         break;
       case 40:
         dropPlayer();
+        break;
+      case 38:
+        rotatePlayer(stage, player.direction);
         break;
       default:
         break;
