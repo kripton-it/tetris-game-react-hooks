@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 
+import { createStage } from "../utils/gameHelpers";
+
 // Components
 import Stage from "./Stage";
 import Display from "./Display";
@@ -18,10 +20,53 @@ const Tetris = () => {
   const [dropTime, setDropTime] = useState(null);
   const [isGameOver, setIsGameOver] = useState(false);
   const [stage, setStage] = useStage();
-  const [player, setPlayer] = usePlayer();
+  const [player, updatePlayerPosition, resetPlayer] = usePlayer();
+
+  const movePlayer = direction => {
+    updatePlayerPosition({
+      x: direction,
+      y: 0,
+      collided: false
+    });
+  };
+
+  const startGame = () => {
+    // reset all
+    setStage(createStage());
+    resetPlayer();
+  };
+
+  const drop = () => {
+    updatePlayerPosition({
+      x: 0,
+      y: 1,
+      collided: false
+    });
+  };
+
+  const dropPlayer = () => {
+    drop();
+  };
+
+  const move = ({ keyCode }) => {
+    if (isGameOver) return;
+    switch (keyCode) {
+      case 37:
+        movePlayer(-1);
+        break;
+      case 39:
+        movePlayer(1);
+        break;
+      case 40:
+        dropPlayer();
+        break;
+      default:
+        break;
+    }
+  };
 
   return (
-    <StyledTetrisWrapper>
+    <StyledTetrisWrapper role="button" tabIndex="0" onKeyDown={move}>
       <StyledTetris>
         <Stage stage={stage} />
         <aside>
@@ -35,7 +80,7 @@ const Tetris = () => {
             </div>
           )}
 
-          <StartButton />
+          <StartButton onClick={startGame} />
         </aside>
       </StyledTetris>
     </StyledTetrisWrapper>

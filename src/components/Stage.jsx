@@ -1,9 +1,9 @@
 import React from "react";
 import Cell from "./Cell";
 
-import { STAGE_WIDTH, STAGE_HEIGHT } from '../utils/gameHelpers'
+import { STAGE_WIDTH, STAGE_HEIGHT } from "../utils/gameHelpers";
 
-import { StyledStage } from './styles/styled-stage'
+import { StyledStage } from "./styles/styled-stage";
 
 const Stage = ({ stage }) => {
   return (
