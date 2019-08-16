@@ -19,8 +19,8 @@ const Tetris = () => {
   console.log("******************************");
   const [dropTime, setDropTime] = useState(null);
   const [isGameOver, setIsGameOver] = useState(false);
-  const [stage, setStage] = useStage();
   const [player, updatePlayerPosition, resetPlayer] = usePlayer();
+  const [stage, setStage] = useStage(player, resetPlayer);
 
   const movePlayer = direction => {
     updatePlayerPosition({
@@ -80,7 +80,7 @@ const Tetris = () => {
             </div>
           )}
 
-          <StartButton onClick={startGame} />
+          <StartButton handleClick={startGame} />
         </aside>
       </StyledTetris>
     </StyledTetrisWrapper>
