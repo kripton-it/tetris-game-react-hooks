@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { createStage } from "../utils/gameHelpers";
+import { createStage, hasCollision } from "../utils/gameHelpers";
 
 // Components
 import Stage from "./Stage";
@@ -15,33 +15,57 @@ import { usePlayer } from "../hooks/usePlayer";
 import { useStage } from "../hooks/useStage";
 
 const Tetris = () => {
-  console.log("Tetris component");
-  console.log("******************************");
+  // console.log("Tetris component");
+  // console.log("******************************");
   const [dropTime, setDropTime] = useState(null);
   const [isGameOver, setIsGameOver] = useState(false);
   const [player, updatePlayerPosition, resetPlayer] = usePlayer();
   const [stage, setStage] = useStage(player, resetPlayer);
 
   const movePlayer = direction => {
-    updatePlayerPosition({
+    const movement = {
       x: direction,
-      y: 0,
-      collided: false
-    });
+      y: 0
+    };
+
+    if (!hasCollision(player, stage, movement)) {
+      updatePlayerPosition({
+        ...movement,
+        collided: false
+      });
+    }
   };
 
   const startGame = () => {
     // reset all
     setStage(createStage());
     resetPlayer();
+    setIsGameOver(false);
   };
 
   const drop = () => {
-    updatePlayerPosition({
+    const movement = {
       x: 0,
-      y: 1,
-      collided: false
-    });
+      y: 1
+    };
+
+    if (!hasCollision(player, stage, movement)) {
+      updatePlayerPosition({
+        ...movement,
+        collided: false
+      });
+    } else if (player.pos.y < 1) {
+      // проверка на Game Over
+      setIsGameOver(true);
+      setDropTime(null);
+    } else {
+      // фиксируем
+      updatePlayerPosition({
+        x: 0,
+        y: 0,
+        collided: true
+      });
+    }
   };
 
   const dropPlayer = () => {
