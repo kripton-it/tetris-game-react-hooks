@@ -1,12 +1,17 @@
-import React from 'react';
-import Cell from './Cell'
+import React from "react";
+import Cell from "./Cell";
 
-const Stage = ({stage}) => {
+import { STAGE_WIDTH, STAGE_HEIGHT } from '../utils/gameHelpers'
+
+import { StyledStage } from './styles/styled-stage'
+
+const Stage = ({ stage }) => {
   return (
-    <div>
-      {stage.map(row => row.map(cell, index) => <Cell key={index} type={cell[0]} />)}
-      
-    </div>
+    <StyledStage width={STAGE_WIDTH} height={STAGE_HEIGHT}>
+      {stage.map(row =>
+        row.map((cell, index) => <Cell key={index} type={cell[0]} />)
+      )}
+    </StyledStage>
   );
 };
 

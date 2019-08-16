@@ -1,10 +1,11 @@
 import React from 'react';
+import { StyledStartButton } from './styles/styled-start-button'
 
 const StartButton = ({handleClick}) => {
   return (
-    <button type="button" onClick={handleClick}>
+    <StyledStartButton type="button" onClick={handleClick}>
       Start Game
-    </button>
+    </StyledStartButton>
   );
 };
 
