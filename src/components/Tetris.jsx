@@ -23,7 +23,9 @@ const Tetris = () => {
   const [isGameOver, setIsGameOver] = useState(false);
   const [player, updatePlayerPosition, resetPlayer, rotatePlayer] = usePlayer();
   const [stage, setStage, rowsCleared] = useStage(player, resetPlayer);
-  const [score, setScore, rows, setRows, level, setLevel] = useGameStatus(rowsCleared);
+  const [score, setScore, rows, setRows, level, setLevel] = useGameStatus(
+    rowsCleared
+  );
 
   const movePlayer = direction => {
     const movement = {
@@ -50,11 +52,14 @@ const Tetris = () => {
     setScore(0);
   };
 
+  const getDropTime = () => (level < 19 ? 1000 - 50 * level : 100);
+
   const drop = () => {
     if (rows >= (level + 1) * 10) {
       setLevel(prevLevel => prevLevel + 1);
       // setDropTime(1000 / (level + 1) + 200);
-      setDropTime(1000 * 0.8 ** level)
+      // setDropTime(1000 * 0.9 ** level)
+      setDropTime(getDropTime());
     }
 
     const movement = {
@@ -81,13 +86,14 @@ const Tetris = () => {
     }
   };
 
-  const keyUp = ({keyCode}) => {
+  const keyUp = ({ keyCode }) => {
     if (!isGameOver) {
       if (keyCode === 40) {
-        setDropTime(1000 * 0.9 ** level)
+        // setDropTime(1000 * 0.9 ** level)
+        setDropTime(getDropTime());
       }
     }
-  }
+  };
 
   const dropPlayer = () => {
     setDropTime(null);
@@ -117,7 +123,12 @@ const Tetris = () => {
   useInterval(drop, dropTime);
 
   return (
-    <StyledTetrisWrapper role="button" tabIndex="0" onKeyDown={move} onKeyUp={keyUp}>
+    <StyledTetrisWrapper
+      role="button"
+      tabIndex="0"
+      onKeyDown={move}
+      onKeyUp={keyUp}
+    >
       <StyledTetris>
         <Stage stage={stage} />
         <aside>
