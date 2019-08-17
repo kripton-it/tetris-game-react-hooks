@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 
-const POINTS = [40, 100, 300, 1200];
+// const POINTS = [40, 100, 300, 1200];
 
 export const useGameStatus = rowsCleared => {
   const [score, setScore] = useState(0);
