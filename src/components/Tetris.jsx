@@ -14,6 +14,7 @@ import { StyledTetrisWrapper, StyledTetris } from "./styles/styled-tetris";
 import { useInterval } from "../hooks/useInterval";
 import { usePlayer } from "../hooks/usePlayer";
 import { useStage } from "../hooks/useStage";
+import { useGameStatus } from "../hooks/useGameStatus";
 
 const Tetris = () => {
   // console.log("Tetris component");
@@ -21,7 +22,8 @@ const Tetris = () => {
   const [dropTime, setDropTime] = useState(null);
   const [isGameOver, setIsGameOver] = useState(false);
   const [player, updatePlayerPosition, resetPlayer, rotatePlayer] = usePlayer();
-  const [stage, setStage] = useStage(player, resetPlayer);
+  const [stage, setStage, rowsCleared] = useStage(player, resetPlayer);
+  const [score, setScore, rows, setRows, level, setLevel] = useGameStatus(rowsCleared);
 
   const movePlayer = direction => {
     const movement = {
@@ -43,9 +45,18 @@ const Tetris = () => {
     resetPlayer();
     setIsGameOver(false);
     setDropTime(1000);
+    setLevel(0);
+    setRows(0);
+    setScore(0);
   };
 
   const drop = () => {
+    if (rows >= (level + 1) * 10) {
+      setLevel(prevLevel => prevLevel + 1);
+      // setDropTime(1000 / (level + 1) + 200);
+      setDropTime(1000 * 0.8 ** level)
+    }
+
     const movement = {
       x: 0,
       y: 1
@@ -73,7 +84,7 @@ const Tetris = () => {
   const keyUp = ({keyCode}) => {
     if (!isGameOver) {
       if (keyCode === 40) {
-        setDropTime(1000);
+        setDropTime(1000 * 0.9 ** level)
       }
     }
   }
@@ -114,9 +125,9 @@ const Tetris = () => {
             <Display isGameOver={isGameOver} text="Game Over" />
           ) : (
             <div>
-              <Display text="Score" />
-              <Display text="Rows" />
-              <Display text="Level" />
+              <Display text={`Score: ${score}`} />
+              <Display text={`Rows: ${rows}`} />
+              <Display text={`Level: ${level}`} />
             </div>
           )}
 
