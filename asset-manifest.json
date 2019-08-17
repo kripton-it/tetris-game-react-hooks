@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/tetris/static/css/main.4f9925c9.chunk.css",
-    "main.js": "/tetris/static/js/main.0cec9009.chunk.js",
-    "main.js.map": "/tetris/static/js/main.0cec9009.chunk.js.map",
-    "runtime~main.js": "/tetris/static/js/runtime~main.fcb3c4a7.js",
-    "runtime~main.js.map": "/tetris/static/js/runtime~main.fcb3c4a7.js.map",
-    "static/js/2.f942d414.chunk.js": "/tetris/static/js/2.f942d414.chunk.js",
-    "static/js/2.f942d414.chunk.js.map": "/tetris/static/js/2.f942d414.chunk.js.map",
-    "index.html": "/tetris/index.html",
-    "precache-manifest.2b589e6e871b499bad319e21ae95c704.js": "/tetris/precache-manifest.2b589e6e871b499bad319e21ae95c704.js",
-    "service-worker.js": "/tetris/service-worker.js",
-    "static/css/main.4f9925c9.chunk.css.map": "/tetris/static/css/main.4f9925c9.chunk.css.map",
-    "static/media/index.css": "/tetris/static/media/Pixel-LCD-7.e2897552.woff",
-    "static/media/bg.png": "/tetris/static/media/bg.2810fe6b.png"
+    "main.css": "/tetris-game-react-hooks/static/css/main.d62e3cab.chunk.css",
+    "main.js": "/tetris-game-react-hooks/static/js/main.0cec9009.chunk.js",
+    "main.js.map": "/tetris-game-react-hooks/static/js/main.0cec9009.chunk.js.map",
+    "runtime~main.js": "/tetris-game-react-hooks/static/js/runtime~main.78cee881.js",
+    "runtime~main.js.map": "/tetris-game-react-hooks/static/js/runtime~main.78cee881.js.map",
+    "static/js/2.4804892b.chunk.js": "/tetris-game-react-hooks/static/js/2.4804892b.chunk.js",
+    "static/js/2.4804892b.chunk.js.map": "/tetris-game-react-hooks/static/js/2.4804892b.chunk.js.map",
+    "index.html": "/tetris-game-react-hooks/index.html",
+    "precache-manifest.bec978f538fc387f28655106d57f79af.js": "/tetris-game-react-hooks/precache-manifest.bec978f538fc387f28655106d57f79af.js",
+    "service-worker.js": "/tetris-game-react-hooks/service-worker.js",
+    "static/css/main.d62e3cab.chunk.css.map": "/tetris-game-react-hooks/static/css/main.d62e3cab.chunk.css.map",
+    "static/media/index.css": "/tetris-game-react-hooks/static/media/Pixel-LCD-7.e2897552.woff",
+    "static/media/bg.png": "/tetris-game-react-hooks/static/media/bg.2810fe6b.png"
   }
 }
